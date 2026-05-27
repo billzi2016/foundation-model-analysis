@@ -35,6 +35,44 @@
   - `CIFAR-10`，`224x224`
   - Patch Embedding、Class Token、Position Embedding、Transformer Encoder
 
+- [swin-transformer-cifar10.ipynb](./swin-transformer-cifar10.ipynb)
+  - `CIFAR-10`，`224x224`
+  - Window Attention（W-MSA）、Shifted Window Attention（SW-MSA）、Patch Merging、层次化特征图
+
+### 序列建模
+
+- [transformer-translation.ipynb](./transformer-translation.ipynb)
+  - Multi30k 英德翻译数据集
+  - Positional Encoding、Multi-head Self-Attention、Cross-Attention、Encoder-Decoder 结构、Greedy Decoding
+
+- [gpt2-causal-lm.ipynb](./gpt2-causal-lm.ipynb)
+  - TinyShakespeare，字符级语言模型
+  - 可学习绝对位置 Embedding、Causal Self-Attention、GeLU MLP、Pre-LayerNorm
+
+- [llama-causal-lm.ipynb](./llama-causal-lm.ipynb)
+  - TinyShakespeare，字符级语言模型
+  - RMSNorm、RoPE、**GQA（Grouped Query Attention）**、SwiGLU、Pre-Norm、温度采样
+
+### 生成模型
+
+- [ddpm-cifar10.ipynb](./ddpm-cifar10.ipynb)
+  - `CIFAR-10`，`32x32`
+  - 前向加噪过程、线性 Beta Schedule、U-Net 去噪网络、时间步嵌入、DDPM 采样算法
+
+- [stable-diffusion.ipynb](./stable-diffusion.ipynb)
+  - 文本提示图像生成
+  - VAE Encoder/Decoder、CLIP 文本编码、Latent Diffusion U-Net、调度器（PNDM/DDIM）、Classifier-Free Guidance
+
+### 目标检测
+
+- [yolo-object-detection.ipynb](./yolo-object-detection.ipynb)
+  - COCO 类别，自然图像输入
+  - YOLOv8 推理流程、CSP Backbone、PANet FPN Neck、检测头、NMS 后处理、边界框可视化
+
+- [detr-object-detection.ipynb](./detr-object-detection.ipynb)
+  - COCO 类别，自然图像输入
+  - ResNet-50 Backbone、Transformer Encoder/Decoder、Object Query、二分图匹配、Cross-Attention 可视化
+
 ### 多模态模型
 
 - [clip-vit-l14-feature-classification.ipynb](./clip-vit-l14-feature-classification.ipynb)
@@ -62,20 +100,27 @@
 - torchvision
 - matplotlib
 - transformers
+- diffusers
+- datasets
+- ultralytics
 - pillow
 
 可使用以下命令安装基础依赖：
 
 ```bash
-pip install torch torchvision matplotlib transformers pillow
+pip install torch torchvision matplotlib transformers diffusers datasets ultralytics pillow
 ```
 
 ## 阅读路径
 
 1. 先看 `AlexNet -> VGG16 -> ResNet18 -> DenseNet121`，建立经典视觉模型演化脉络。
-2. 再看 `ViT`，对比 CNN 和 Transformer 的视觉建模差异。
-3. 再看 `CLIP`，切到图文共同嵌入和零样本分类。
-4. 最后看 `SimCLR / MoCo / BYOL`，对比自监督表示学习三种典型路线。
+2. 再看 `ViT -> Swin Transformer`，对比 CNN 和 Transformer 的视觉建模差异，以及全局 vs 窗口注意力。
+3. 看 `Transformer（翻译任务）`，理解 Encoder-Decoder 结构与序列生成原理。
+4. 看 `GPT-2 -> LLaMA`，对比 Decoder-only 语言模型的演化（绝对 PE → RoPE，MHA → GQA，GeLU → SwiGLU）。
+5. 看 `DDPM -> Stable Diffusion`，从基础扩散模型到潜在扩散生成流程。
+6. 看 `YOLO -> DETR`，对比密集预测（Anchor-free）和集合预测（Transformer）两种检测范式。
+7. 最后看 `CLIP`，切到图文共同嵌入和零样本分类。
+8. 看 `SimCLR / MoCo / BYOL`，对比自监督表示学习三种典型路线。
 
 ## 对应论文
 
@@ -86,6 +131,28 @@ pip install torch torchvision matplotlib transformers pillow
 - ResNet / ResNet18: [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)
 - DenseNet / DenseNet121: [Densely Connected Convolutional Networks](https://arxiv.org/abs/1608.06993)
 - Vision Transformer (ViT): [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/abs/2010.11929)
+- Swin Transformer: [Swin Transformer: Hierarchical Vision Transformer using Shifted Windows](https://arxiv.org/abs/2103.14030)
+
+### 序列建模
+
+- Transformer: [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
+
+### 生成模型
+
+- DDPM: [Denoising Diffusion Probabilistic Models](https://arxiv.org/abs/2006.11239)
+- Stable Diffusion / LDM: [High-Resolution Image Synthesis with Latent Diffusion Models](https://arxiv.org/abs/2112.10752)
+
+### 目标检测
+
+- YOLO: [You Only Look Once: Unified, Real-Time Object Detection](https://arxiv.org/abs/1506.02640)
+- YOLOv8: [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics)
+- DETR: [End-to-End Object Detection with Transformers](https://arxiv.org/abs/2005.12872)
+
+### 语言模型
+
+- GPT-2: [Language Models are Unsupervised Multitask Learners](https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf)
+- LLaMA 2: [Llama 2: Open Foundation and Fine-Tuned Chat Models](https://arxiv.org/abs/2307.09288)
+- GQA: [GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints](https://arxiv.org/abs/2305.13245)
 
 ### 多模态模型
 
